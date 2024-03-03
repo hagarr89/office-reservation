@@ -1,0 +1,17 @@
+.AnalysisResults {
+  padding: 1rem 0 2rem;
+  .info {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    .date {
+      font-weight: bold;
+    }
+    .content {
+      & > span:not(:last-child)::after {
+        content: ", ";
+      }
+    }
+  }
+}

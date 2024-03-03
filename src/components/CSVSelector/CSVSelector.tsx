@@ -1,7 +1,7 @@
 import React from "react";
 import Papa from "papaparse";
-import { IReservation } from "../store/reservationsStore";
-//need to chnage T type
+import { IReservation } from "../../store/reservationsStore";
+
 type Props<T> = {
   onChange(data: T[]): void;
 };
@@ -24,13 +24,21 @@ const CSVSelector = <T extends { [x: string]: any }>({
             },
           });
         else onChange([]);
-        // 6. call the onChange event
       } catch (error) {
         console.error(error);
       }
     }
   };
-  return <input type="file" accept=".csv" onChange={handleFileChange} />;
+  return (
+    <>
+      <input
+        type="file"
+        accept=".csv"
+        onChange={handleFileChange}
+        id="icon-button-file"
+      />
+    </>
+  );
 };
 
 export default CSVSelector;

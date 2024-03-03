@@ -15,10 +15,10 @@ const AnalysisResults = ({
     <div className="AnalysisResults">
       <h2>Analysis Results</h2>
       <div className="info">
-        <div>{date.format("MM-YYYY")}</div>
-        <div>
+        <div className="date">{date.format("MM-YYYY")}</div>
+        <div className="content">
           {results
-            ? Object.keys(results).map((key) => <div>{results[key]}</div>)
+            ? Object.keys(results).map((key) => <span>{results[key]}</span>)
             : null}
         </div>
       </div>

@@ -4,12 +4,14 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  TableContainer,
+  Paper,
 } from "@mui/material";
 
 const CSVReader = <T extends { [x: string]: any }>({ data }: { data: T[] }) => {
   const headers = data?.length ? Object.keys(data[0]) : [];
   return (
-    <div>
+    <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
@@ -22,13 +24,13 @@ const CSVReader = <T extends { [x: string]: any }>({ data }: { data: T[] }) => {
           {data?.map((row) => (
             <TableRow>
               {headers?.map((col) => (
-                <TableCell>{row[col as keyof T]}</TableCell>
+                <TableCell align="center">{row[col as keyof T]}</TableCell>
               ))}
             </TableRow>
           ))}
         </TableBody>
       </Table>
-    </div>
+    </TableContainer>
   );
 };
 

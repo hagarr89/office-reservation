@@ -1,7 +1,7 @@
 import CSVSelector from "../components/CSVSelector";
 import DatePickerInput from "../components/DatePickerInput";
 import reservationsStore, { IReservation } from "../store/reservationsStore";
-import CSVReader from "../components/CSVReader";
+import CSVReader from "../components/CSVReader/CSVReader";
 import AnalysisResults from "../components/AnalysisResults";
 import { observer } from "mobx-react";
 import dayjs, { Dayjs } from "dayjs";
