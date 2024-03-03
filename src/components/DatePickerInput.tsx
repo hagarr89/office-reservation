@@ -8,7 +8,7 @@ const DatePickerInput = ({
   maxDate,
 }: {
   date: Dayjs;
-  onChangeDate: (date: Dayjs) => void;
+  onChangeDate: (value: Dayjs | null) => void;
   maxDate?: Dayjs;
 }) => {
   return (
@@ -20,7 +20,7 @@ const DatePickerInput = ({
           views={["month", "year"]}
           format="MM-YYYY"
           onChange={onChangeDate}
-          autoFocus={false}
+          autoFocus={true}
           defaultValue={date}
           maxDate={maxDate}
         />

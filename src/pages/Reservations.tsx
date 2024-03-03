@@ -6,13 +6,14 @@ import AnalysisResults from "../components/AnalysisResults";
 import { observer } from "mobx-react";
 import dayjs, { Dayjs } from "dayjs";
 
-const now = new Date("MM-YYYY");
+const now = dayjs(new Date());
+
 const Reservations = () => {
   const handelChangeCSV = (csvData: IReservation[]) => {
     reservationsStore.setCSVData(csvData);
   };
-  const handelChangeDate = (newDate: Dayjs) => {
-    reservationsStore.setDate(newDate);
+  const handelChangeDate = (value: Dayjs | null) => {
+    if (value) reservationsStore.setDate(value);
   };
   const analysisResults = {
     revenue: `expected revenue: $${reservationsStore.revenue}`,
@@ -24,15 +25,15 @@ const Reservations = () => {
         <DatePickerInput
           onChangeDate={handelChangeDate}
           date={reservationsStore.filterDate}
-          maxDate={dayjs(now)}
+          maxDate={now}
         />
-        <CSVSelector onChange={handelChangeCSV} />
+        <CSVSelector<IReservation> onChange={handelChangeCSV} />
       </div>
       <AnalysisResults
         date={reservationsStore.filterDate}
         results={analysisResults}
       />
-      <CSVReader data={reservationsStore.filterdRows} />
+      <CSVReader<IReservation> data={reservationsStore.filterdRows} />
     </div>
   );
 };

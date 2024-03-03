@@ -2,11 +2,12 @@ import React from "react";
 import Papa from "papaparse";
 import { IReservation } from "../store/reservationsStore";
 //need to chnage T type
-type Props = {
-  onChange(data: IReservation[]): void;
+type Props<T> = {
+  onChange(data: T[]): void;
 };
-
-const CSVSelector = ({ onChange }: Props) => {
+const CSVSelector = <T extends { [x: string]: any }>({
+  onChange,
+}: Props<T>) => {
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       try {
@@ -18,7 +19,7 @@ const CSVSelector = ({ onChange }: Props) => {
               return header.replace(/\s+/g, "");
             },
             skipEmptyLines: true,
-            complete({ data }) {
+            complete({ data }: { [x: string]: any }) {
               onChange(data);
             },
           });

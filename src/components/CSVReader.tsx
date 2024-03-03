@@ -1,28 +1,33 @@
-import { IReservation } from "../store/reservationsStore";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 
-const CSVReader = ({ data }: { data: IReservation[] }) => {
+const CSVReader = <T extends { [x: string]: any }>({ data }: { data: T[] }) => {
   const headers = data?.length ? Object.keys(data[0]) : [];
-
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
+      <Table>
+        <TableHead>
+          <TableRow>
             {headers?.map((header, i) => (
               <th key={i}>{header}</th>
             ))}
-          </tr>
-        </thead>
-        <tbody>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {data?.map((row) => (
-            <tr>
-              {headers.map((col) => (
-                <td>{row[col]}</td>
+            <TableRow>
+              {headers?.map((col) => (
+                <TableCell>{row[col as keyof T]}</TableCell>
               ))}
-            </tr>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </div>
   );
 };
