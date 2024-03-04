@@ -28,6 +28,7 @@ class ReservationsStore {
     const res = this.csvData.filter((row) =>
       isCurrentDateInRange(row.StartDay, row.EndDay, this.filterDate)
     );
+
     return res;
   }
 
