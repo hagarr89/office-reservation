@@ -21,8 +21,8 @@ const CSVReader = <T extends { [x: string]: any }>({ data }: { data: T[] }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.map((row) => (
-            <TableRow>
+          {data?.map((row, index) => (
+            <TableRow key={index}>
               {headers?.map((col) => (
                 <TableCell align="center">{row[col as keyof T]}</TableCell>
               ))}

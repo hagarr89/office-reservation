@@ -8,6 +8,10 @@ import dayjs, { Dayjs } from "dayjs";
 
 const now = dayjs(new Date());
 
+function currencyFormat(num: number) {
+  return "$" + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+}
+
 const Reservations = () => {
   const handelChangeCSV = (csvData: IReservation[]) => {
     reservationsStore.setCSVData(csvData);
@@ -16,7 +20,7 @@ const Reservations = () => {
     if (value) reservationsStore.setDate(value);
   };
   const analysisResults = {
-    revenue: `expected revenue: $${reservationsStore.revenue}`,
+    revenue: `expected revenue: ${currencyFormat(reservationsStore.revenue)}`,
     totalUnreservedCapacity: `expected total capacity of the unreserved offices: ${reservationsStore.totalUnreservedCapacity}`,
   };
   return (

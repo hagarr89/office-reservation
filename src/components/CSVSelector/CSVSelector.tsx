@@ -30,14 +30,13 @@ const CSVSelector = <T extends { [x: string]: any }>({
     }
   };
   return (
-    <>
-      <input
-        type="file"
-        accept=".csv"
-        onChange={handleFileChange}
-        id="icon-button-file"
-      />
-    </>
+    <input
+      type="file"
+      accept=".csv"
+      onChange={handleFileChange}
+      id="icon-button-file"
+      data-testid="csvFileInput"
+    />
   );
 };
 

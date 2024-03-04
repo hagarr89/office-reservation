@@ -1,4 +1,3 @@
-import { observer } from "mobx-react";
 import { Dayjs } from "dayjs";
 
 interface resultsType {
@@ -18,7 +17,9 @@ const AnalysisResults = ({
         <div className="date">{date.format("MM-YYYY")}</div>
         <div className="content">
           {results
-            ? Object.keys(results).map((key) => <span>{results[key]}</span>)
+            ? Object.keys(results).map((key) => (
+                <span key={key}>{results[key]}</span>
+              ))
             : null}
         </div>
       </div>
@@ -26,4 +27,4 @@ const AnalysisResults = ({
   );
 };
 
-export default observer(AnalysisResults);
+export default AnalysisResults;

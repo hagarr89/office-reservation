@@ -2,6 +2,8 @@ import { makeAutoObservable } from "mobx";
 import dayjs, { Dayjs } from "dayjs";
 import {isCurrentDateInRange , calcDaysInMonth ,calcRevenuePerDay} from '../DateHelper'
 
+
+
 export interface IReservation {
   EndDay: string;
   MonthlyPrice: string;
@@ -41,7 +43,6 @@ class ReservationsStore {
           calcRevenuePerDay(this.filterDate, current.MonthlyPrice) +
         acc
       );
-      console.log(res)
       return  Math.round(res);
     }, 0);
   }
