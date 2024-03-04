@@ -1,6 +1,5 @@
 import React from "react";
 import Papa from "papaparse";
-import { IReservation } from "../../store/reservationsStore";
 
 type Props<T> = {
   onChange(data: T[]): void;
@@ -13,7 +12,7 @@ const CSVSelector = <T extends { [x: string]: any }>({
       try {
         const file = e.target.files[0];
         if (file)
-          Papa.parse<IReservation>(file, {
+          Papa.parse<T>(file, {
             header: true,
             transformHeader: (header) => {
               return header.replace(/\s+/g, "");
