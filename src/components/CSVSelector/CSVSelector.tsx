@@ -1,5 +1,7 @@
 import React from "react";
 import Papa from "papaparse";
+import { Button } from "@mui/material";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
 
 type Props<T> = {
   onChange(data: T[]): void;
@@ -29,13 +31,25 @@ const CSVSelector = <T extends { [x: string]: any }>({
     }
   };
   return (
-    <input
-      type="file"
-      accept=".csv"
-      onChange={handleFileChange}
-      id="icon-button-file"
-      data-testid="csvFileInput"
-    />
+    <div className="CSVSelector">
+      <input
+        type="file"
+        accept=".csv"
+        onChange={handleFileChange}
+        data-testid="csvFileInput"
+        id="csv-button-file"
+      />
+      <label htmlFor="csv-button-file">
+        <Button
+          component="div"
+          classes={{ root: "csv-button" }}
+          variant="contained"
+        >
+          <UploadFileIcon />
+          <div>Upload File</div>
+        </Button>
+      </label>
+    </div>
   );
 };
 

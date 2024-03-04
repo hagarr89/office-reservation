@@ -12,7 +12,7 @@ export interface IReservation {
 }
 
 class ReservationsStore {
-  csvData: IReservation[] | [] = []; // store CSV data
+  csvData: IReservation[] | [] = [];
   filterDate: Dayjs = dayjs(new Date());
 
   constructor() {
