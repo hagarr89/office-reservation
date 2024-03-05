@@ -42,7 +42,7 @@ const CSVReader = <T extends { [x: string]: any }>({
               <TableHead>
                 <TableRow>
                   {headers?.map((header, i) => (
-                    <th key={i}>{header}</th>
+                    <th key={i}>{header.replace("_", " ")}</th>
                   ))}
                 </TableRow>
               </TableHead>

@@ -5,10 +5,11 @@ import {isCurrentDateInRange , calcDaysInMonth ,calcRevenuePerDay} from '../Date
 
 
 export interface IReservation {
-  EndDay: string;
-  MonthlyPrice: string;
-  StartDay: string;
-  Capacity: string;
+  
+  end_day: string;
+  monthly_price: string;
+  start_day: string;
+  capacity: string;
 }
 
 class ReservationsStore {
@@ -20,13 +21,13 @@ class ReservationsStore {
   }
   get unfilterRows(){
     const res = this.csvData.filter((row) =>
-      !isCurrentDateInRange(row.StartDay, row.EndDay, this.filterDate)
+      !isCurrentDateInRange(row.start_day, row.end_day, this.filterDate)
     );
     return res;
   }
   get filterdRows() {
     const res = this.csvData.filter((row) =>
-      isCurrentDateInRange(row.StartDay, row.EndDay, this.filterDate)
+      isCurrentDateInRange(row.start_day, row.end_day, this.filterDate)
     );
 
     return res;
@@ -37,11 +38,11 @@ class ReservationsStore {
      
       const res = (
       calcDaysInMonth(
-          current.StartDay,
-          current.EndDay,
+          current.start_day,
+          current.end_day,
           this.filterDate
         ) *
-          calcRevenuePerDay(this.filterDate, current.MonthlyPrice) +
+          calcRevenuePerDay(this.filterDate, current.monthly_price) +
         acc
       );
       return  Math.round(res);
@@ -50,7 +51,7 @@ class ReservationsStore {
 
  get totalUnreservedCapacity() {
     return this.unfilterRows.reduce((acc , curent) =>{
-       return Number(curent.Capacity )+ acc;
+       return Number(curent.capacity )+ acc;
     }, 0)
    
   }
